@@ -53,6 +53,9 @@ class Test
         puts "Failed: #{failure}"
       end
     end
+      successes.each do |failure|
+        puts "Succeeded! #{failure}"
+      end
     puts "Failed tests: #{failures.size}"
     puts "Passed tests: #{successes.size}"
   end
