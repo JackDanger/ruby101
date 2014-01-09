@@ -1,39 +1,16 @@
-require 'sinatra/base'
-module Market
-  def contents_of(store)
-    require 'open-uri'
-    if block_given?
-      yield
-    end
-    open("https://squareup.com/market/#{store}").read
-  end
+#run proc {
+#  [200,
+#   {'Content-Type' => 'text/html'},
+#   ['Hello, world!']
+#  ]
+#}
 
-  contents_of 'mitchel-designs' do
-    "hi there"
-  end
-end
-module Analyzable
-  def prices(text)
-    text.scan(/\$([\d\.]+)/).flatten
-  end
-
-  def max_price(text)
-    all = prices(text)
-    all.map do |price|
-      price.to_i
-    end.reduce(0) do |max_so_far, price|
-      [max_so_far, price].max
-    end
-  end
-end
-class App < Sinatra::Base
-  include Market
-  include Analyzable
-  get '/' do
-    "Hello World"
-  end
-  get '/:store' do
-    max_price(contents_of(params[:store])).inspect
-  end
-end
-run App
+run proc {
+  who_I_am = "The Awesome Possum"
+  current_time = Time.now
+  my_html = "<p> <strong>#{who_I_am}</strong> #{current_time}"
+  [200,
+   {'Content-Type' => 'text/html'},
+   [my_html]
+  ]
+}
