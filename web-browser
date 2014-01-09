@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# (Any file that starts with '#!/bin/bash' at the top could have just been typed into a terminal window by hand)
+
+
+# We use the program 'netcat' or 'network concatenate' here.
+# Port 80 is the default webserver port and "http_request" is the name of
+# a file that contains our complete request.
+
+nc motherfuckingwebsite.com 80 < http_request
+
+# That's it. All we're doing is taking the two lines (plus a blank line) from our http_request file
+# and sending it to netcat, which sends it on to the web server.
+
+# The above is identical to typing:
+# nc motherfuckingwebsite.com 80
+# GET / HTTP/1.1
+# Host: motherfuckingwebsite.com
+# (hit enter an extra time)
+
+
+# Another fun site to try: http://toastytech.com/evil/
